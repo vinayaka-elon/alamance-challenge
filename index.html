@@ -1,4 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Alamance Growth Data Challenge</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
@@ -15,14 +14,14 @@
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.6}
 nav.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
-nav.rail .in{max-width:1180px;margin:0 auto;padding:10px 16px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
+nav.rail .in{max-width:none;margin:0;padding:10px clamp(16px,3vw,48px);display:flex;flex-wrap:wrap;gap:6px}
 nav.rail{border-top:4px solid var(--accent)}
 nav.rail a{white-space:nowrap;text-decoration:none;color:var(--fg);font-size:.88rem;padding:6px 12px;border-radius:999px;border:1px solid var(--line)}
 nav.rail a:hover{border-color:var(--accent);color:var(--accent)}
 nav.rail a.on{background:var(--accent);border-color:var(--accent);color:#fff}
 .panel[hidden]{display:none!important}
-main{max-width:1180px;margin:0 auto;padding:28px 16px 80px;display:flex;flex-direction:column;gap:64px}
-header.top{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:28px;align-items:end;padding-top:12px}
+main{max-width:none;margin:0;padding:28px clamp(16px,3vw,48px) 80px;display:flex;flex-direction:column;gap:64px}
+header.top{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;padding-top:12px}
 h1{font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.05;margin:0;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
 .kicker{color:var(--accent);font-weight:600;font-size:.9rem;margin-bottom:10px}
 .lede{font-size:1.15rem;color:var(--fg);margin:14px 0 0}
@@ -55,7 +54,8 @@ a{color:var(--accent);text-underline-offset:2px}
 /* map */
 .mapwrap{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px}
 .mapbox{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.mapbox svg{display:block;width:100%;height:auto}
+.mapbox svg{display:block;width:100%;height:auto;max-height:72vh}
+.chart svg{max-height:60vh}
 .legend .li{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .legend{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);padding:8px 12px;border-top:1px solid var(--line)}
 .sw{display:inline-block;width:18px;height:12px;border-radius:2px;vertical-align:middle}
@@ -105,7 +105,57 @@ ul.plain{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:4px}
 .chart svg{display:block;width:100%;height:auto}
 .refs p{font-size:.86rem;color:var(--muted);max-width:none;padding-left:1.5em;text-indent:-1.5em}
 footer{color:var(--muted);font-size:.82rem}
+
+/* readability and emphasis */
+.card,section>*,.grid2>*,.grid3>*{min-width:0}
+.title,.card b{overflow-wrap:anywhere}
+:root{--teal:#527b82;--orange:#b7410e;--green:#788a38;--hl:#f3e6c4}
+body{font-size:17.5px}
+.small{font-size:1rem;line-height:1.6}
+.intro{font-size:1.1rem;color:#3e3838}
+p,li,dd{line-height:1.65}
+table{font-size:1rem}
+label{font-size:.95rem}
+.legend{font-size:.92rem}
+.kv{font-size:1rem;gap:6px 14px}
+.tip{font-size:.95rem}
+pre{font-size:.9rem}
+nav.rail a{font-size:.98rem;padding:7px 14px}
+button,.chip{font-size:.98rem}
+select,input,textarea{font-size:1rem}
+.aias div{font-size:.98rem}
+.refs p{font-size:1rem}
+.side .title,.title{font-size:1.3rem}
+h2{font-size:1.9rem}
+h2 .sec-num{color:var(--gold)}
+h2{padding-bottom:6px;border-bottom:3px solid var(--accent);align-self:flex-start}
+.hl{background:linear-gradient(transparent 52%,var(--hl) 52%);padding:0 2px}
+.ul{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:4px}
+b.t-limit,.t-limit{color:var(--accent)}
+b.t-check,.t-check{color:var(--teal)}
+.kv dt.k-start{color:var(--teal);font-weight:700}
+.kv dt.k-leave{color:var(--orange);font-weight:700}
+.kv dt.k-way{color:var(--accent);font-weight:700}
+.kv dt{font-weight:600}
+th{color:var(--fg);background:#f4ecec}
+
+
+/* challenge landing */
+header.top{display:flex;flex-direction:column;gap:22px;padding-top:16px}
+h1{font-size:clamp(2.2rem,3.6vw,2.9rem);line-height:1.1;letter-spacing:-.015em}
+.bigq{font-size:clamp(1.35rem,2.1vw,1.7rem);line-height:1.4;font-weight:600;color:var(--accent);margin:0;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.lede{font-size:1.15rem;line-height:1.65;margin:0}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.trio>div{border-top:3px solid var(--gold);padding-top:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.trio-h{font-weight:700;color:var(--accent);font-size:1.05rem}
+.trio ul.plain{gap:8px}
+.startrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:6px}
+.startrow a{text-decoration:none;color:var(--accent);font-weight:600;border:1px solid var(--accent);border-radius:999px;padding:7px 14px}
+.startrow a:hover{background:var(--accent);color:#fff}
+@media (max-width:860px){.trio{grid-template-columns:minmax(0,1fr)}}
+
 @media (max-width:860px){
+  #measure{width:100%} .btns>label{min-width:0;max-width:100%;flex:1 1 100%}
   header.top,.mapwrap,.grid2,.grid3,.crisp{grid-template-columns:minmax(0,1fr)}
   .aias{grid-template-columns:repeat(2,minmax(0,1fr))}
   .logform{grid-template-columns:minmax(0,1fr)} .logform .wide,.logform .span3{grid-column:auto}
@@ -121,24 +171,23 @@ footer{color:var(--muted);font-size:.82rem}
 
 <main>
 <header class="top panel" id="challenge">
-  <div>
-    <div class="kicker">Love School of Business · Undergraduate data challenge · Two weeks</div>
-    <h1>Alamance Growth Data Challenge</h1>
-    <p class="lede">Alamance County added roughly 35,000 residents between 2010 and 2025. Your team will find where that growth is happening, what goes with it, and where it is likely to go next, then recommend one action to the people who plan for it.</p>
+  <h1>Alamance Growth Data Challenge</h1>
+  <p class="bigq">Where is Alamance County growing, which factors are associated with that growth, and where is growth likely to occur next?</p>
+  <p class="lede">Alamance County added roughly 35,000 residents between 2010 and 2025, and new homes, jobs and rising prices are not spread evenly across it. Your team will find where growth is happening, what goes with it and where it is likely to go next, then recommend one action to the people who plan for it.</p>
+  <div class="trio">
+    <div><div class="trio-h">Your task</div><ul class="plain"><li>One diagnostic model of what is associated with growth</li><li>One predictive model of where growth goes next, compared with a simple rule</li><li>One recommendation to a named decision maker, such as a town board, the county planning department or a nonprofit housing builder</li></ul></div>
+    <div><div class="trio-h">What you deliver</div><ul class="plain"><li>A team presentation, judged on the criteria in the Judging tab</li><li>The files that reproduce every result you show</li><li>Your AI-use log</li></ul></div>
+    <div><div class="trio-h">How to work</div><p>Start from one sharp question and pick <span class="hl">three to five measures that bear on it</span>. Learn how each was measured, where it is missing and what it cannot show. A focused analysis gives a clearer story and a more defensible model than every column at once.</p></div>
   </div>
-  <div class="q">Where is Alamance County growing, which factors are associated with that growth, and where is growth likely to occur next?
-    <small>Each team builds one diagnostic model, one predictive model and one recommendation addressed to a named decision maker, such as a town board, the county planning department or a nonprofit housing builder.</small></div>
-  <div class="card" style="grid-column:1/-1;border-left:5px solid var(--gold);display:flex;flex-direction:column;gap:8px">
-    <b>Choose a focus, then choose your data</b>
-    <p class="small">The two workbooks hold more than 80 columns across thousands of rows, and a strong team will use only a small part of them. Start from one sharp question, pick the three to five measures that bear on it, and learn those well: how each was measured, where it is missing and what it cannot show. A few well-understood measures give a clearer story, a more defensible model and a better presentation than every column at once. Judges reward a well-defined problem and well-supported findings, and both come from focus.</p>
-  </div>
+  <div class="startrow"><span class="trio-h" style="margin:0">Start here</span>
+    <a href="#geography" data-go>1. Geography</a><a href="#dictionary" data-go>2. Data dictionary</a><a href="#questions" data-go>3. Questions</a><a href="#log" data-go>4. Documenting AI</a></div>
 </header>
 
 
 
 <section id="geography" class="panel">
   <h2><span class="sec-num">01</span>Geography: from state to parcel</h2>
-  <p class="intro">Every dataset in this challenge is recorded at one geographic level. Parcels sit inside towns, townships, ZIP codes and census tracts, but ZIP codes ignore county and town lines, so a ZIP figure can describe people who live outside Alamance. Step through the levels to see what each one is, which data uses it and how it connects to the others.</p>
+  <p class="intro">Every dataset in this challenge is recorded at one geographic level. Parcels sit inside towns, townships, ZIP codes and census tracts, but <span class="hl">ZIP codes ignore county and town lines</span>, so a ZIP figure can describe people who live outside Alamance. Step through the levels to see what each one is, which data uses it and how it connects to the others.</p>
   <div class="btns" id="levels" role="group" aria-label="Geographic level"></div>
   <div class="mapwrap">
     <div class="mapbox"><svg id="geomap" viewBox="0 0 720 560" role="img" aria-label="Map of the selected geographic level"></svg><div class="tip" id="geotip" hidden></div><div class="legend" id="geolegend"></div></div>
@@ -168,11 +217,11 @@ footer{color:var(--muted);font-size:.82rem}
 
 <section id="data" class="panel">
   <h2><span class="sec-num">03</span>Data and merging</h2>
-  <p class="intro">Two workbooks and one notebook support the challenge. Most analysis errors in projects like this come from joins that silently duplicate or drop rows, so plan every join and check the row count after it.</p>
+  <p class="intro">Two workbooks and one notebook support the challenge. Most analysis errors in projects like this come from joins that silently duplicate or drop rows, so plan every join and <span class="ul">check the row count after it</span>.</p>
   <div class="grid3">
-    <div class="card"><span class="tag">Starter workbook</span><p style="margin-top:8px"><b>Alamance_Growth_Starter_Data.xlsx</b></p><ul class="plain small" style="margin-top:6px"><li>Parcels: 79,870 properties, 2026 snapshot</li><li>Permits: 27,241 county permits, 2019 to Aug 2026</li><li>Areas: 10 towns plus Unincorporated</li></ul></div>
-    <div class="card"><span class="tag">ZIP panel</span><p style="margin-top:8px"><b>Alamance_Growth_ZIP_Panel.xlsx</b></p><ul class="plain small" style="margin-top:6px"><li>9 ZIP areas × 16 years, 41 measures</li><li>Census survey, IRS, business patterns, jobs, house prices</li><li>Data_Availability sheet shows coverage by year</li></ul></div>
-    <div class="card"><span class="tag">Notebook</span><p style="margin-top:8px"><b>Alamance_Growth_Notebook.ipynb</b></p><ul class="plain small" style="margin-top:6px"><li>Loads both workbooks and checks every join</li><li>Assigns parcels and permits to ZIP codes</li><li>Builds a ZIP-year table, one explanatory model and one forecast</li></ul></div>
+    <div class="card"><p><b>Alamance_Growth_Starter_Data.xlsx</b></p><ul class="plain small" style="margin-top:6px"><li>Parcels: 79,870 properties, 2026 snapshot</li><li>Permits: 27,241 county permits, 2019 to Aug 2026</li><li>Areas: 10 towns plus Unincorporated</li></ul></div>
+    <div class="card"><p><b>Alamance_Growth_ZIP_Panel.xlsx</b></p><ul class="plain small" style="margin-top:6px"><li>9 ZIP areas × 16 years, 41 measures</li><li>Census survey, IRS, business patterns, jobs, house prices</li><li>Data_Availability sheet shows coverage by year</li></ul></div>
+    <div class="card"><p><b>Alamance_Growth_Notebook.ipynb</b></p><ul class="plain small" style="margin-top:6px"><li>Loads both workbooks and checks every join</li><li>Assigns parcels and permits to ZIP codes</li><li>Builds a ZIP-year table, one explanatory model and one forecast</li></ul></div>
   </div>
   <div class="card"><svg id="keys" viewBox="0 0 1000 300" role="img" aria-label="How the datasets connect through shared keys" style="width:100%;height:auto"></svg></div>
   <div class="grid2">
@@ -186,11 +235,11 @@ footer{color:var(--muted);font-size:.82rem}
     <div class="card" style="display:flex;flex-direction:column;gap:10px">
       <b>The five checks for every join</b>
       <ol class="small" style="margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px">
-        <li>Store keys as text so leading zeros survive (Parcel ID, ZIP Code).</li>
-        <li>Resolve duplicate keys on the "one" side before joining, and write down the rule.</li>
-        <li>Summarize the "many" side first (permits per parcel, homes built per ZIP and year).</li>
-        <li>Compare row counts before and after; a left join must keep the left table's count.</li>
-        <li>Count and inspect unmatched rows; about 14% of permits have no Parcel ID.</li>
+        <li><b class="t-check">Keys as text.</b> Store keys as text so leading zeros survive (Parcel ID, ZIP Code).</li>
+        <li><b class="t-check">Duplicates first.</b> Resolve duplicate keys on the "one" side before joining, and write down the rule.</li>
+        <li><b class="t-check">Summarize.</b> Summarize the "many" side first (permits per parcel, homes built per ZIP and year).</li>
+        <li><b class="t-check">Row counts.</b> Compare row counts before and after; a left join must keep the left table's count.</li>
+        <li><b class="t-check">Unmatched rows.</b> Count and inspect unmatched rows; about 14% of permits have no Parcel ID.</li>
       </ol>
       <div class="btns"><button class="lang on" data-l="py">Python</button><button class="lang" data-l="xl">Excel</button></div>
       <pre id="joincode"></pre>
@@ -213,7 +262,7 @@ footer{color:var(--muted);font-size:.82rem}
 
 <section id="questions" class="panel">
   <h2><span class="sec-num">05</span>Questions to explore</h2>
-  <p class="intro">These questions are starting points. Pick one or two that interest your team and go deep, using one model to explain what is associated with growth and another to forecast it against a simple rule. Each card names the few measures to start with and the ones to leave aside until you need them.</p>
+  <p class="intro">These questions are starting points. Pick one or two that interest your team and go deep, using one model to explain what is associated with growth and another to forecast it against a simple rule. Each card shows where to start.</p>
   <div class="card" style="border-left:5px solid var(--gold);display:flex;flex-direction:column;gap:8px">
     <b>Before you add a measure, ask four questions</b>
     <ol class="small" style="margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px">
@@ -222,7 +271,7 @@ footer{color:var(--muted);font-size:.82rem}
       <li>Would our answer or our model change if we left it out?</li>
       <li>Could we explain it to a county official in the presentation?</li>
     </ol>
-    <p class="small muted">If the answer to any of these is no, leave the measure aside. Dropping a measure you tested and found unhelpful is a finding worth one sentence in your presentation.</p>
+    <p class="small muted"><span class="hl">If the answer to any of these is no, leave the measure aside.</span> Dropping a measure you tested and found unhelpful is a finding worth one sentence in your presentation.</p>
   </div>
   <div class="grid2" id="models"></div>
   <div class="card">
@@ -241,7 +290,7 @@ footer{color:var(--muted);font-size:.82rem}
 
 <section id="ai" class="panel">
   <h2><span class="sec-num">06</span>AI in analytics: what the research shows</h2>
-  <p class="intro">AI tools can write code, summarize data and draft reports quickly, and the research on their use in data analysis points to one consistent lesson: the analyst's job shifts toward checking. Read these findings before you start.</p>
+  <p class="intro">AI tools can write code, summarize data and draft reports quickly, and the research on their use in data analysis points to one consistent lesson: <span class="hl">the analyst's job shifts toward checking</span>. Read these findings before you start.</p>
   <div class="grid2" id="evidence"></div>
   <div class="card" style="display:flex;flex-direction:column;gap:10px">
     <b>Where this challenge sits on the AI Assessment Scale</b>
@@ -251,7 +300,7 @@ footer{color:var(--muted);font-size:.82rem}
       <div><b>2 · AI planning</b>AI for brainstorming and outlining only.</div>
       <div><b>3 · AI collaboration</b>AI assists with drafts that students evaluate and revise.</div>
       <div><b>4 · Full AI</b>AI used throughout under student direction.</div>
-      <div class="on"><b>5 · AI exploration</b>AI used creatively to solve the task in new ways. <span class="tag" style="margin-top:6px">This challenge</span></div>
+      <div class="on"><b>5 · AI exploration</b>AI used creatively to solve the task in new ways. <span style="display:block;margin-top:6px;color:var(--accent);font-weight:700">This challenge</span></div>
     </div>
   </div>
 </section>
@@ -276,7 +325,7 @@ footer{color:var(--muted);font-size:.82rem}
     <textarea id="csvout" rows="4" readonly hidden style="width:100%;font-family:var(--mono);font-size:.78rem"></textarea>
   </div>
   <div class="grid2">
-    <div class="card"><b>A check that counts</b><p class="small" style="margin-top:6px">A check qualifies when it could have revealed an error. Recomputing a number, comparing row counts, rerunning code on a case with a known answer and tracing a chart back to its cells all qualify. A general impression that the output looked right does not.</p></div>
+    <div class="card"><b>A check that counts</b><p class="small" style="margin-top:6px"><span class="ul">A check qualifies when it could have revealed an error.</span> Recomputing a number, comparing row counts, rerunning code on a case with a known answer and tracing a chart back to its cells all qualify. A general impression that the output looked right does not.</p></div>
     <div class="card"><b>Closing reflection, a short paragraph at the end of the log</b><ol class="small" style="margin:6px 0 0;padding-left:1.2em"><li>Where did AI save time or improve the work?</li><li>Where was it wrong or misleading, and how did you find out?</li><li>Which decisions did the team keep for itself, and why?</li></ol></div>
   </div>
   <div class="card" style="display:flex;flex-direction:column;gap:10px">
@@ -307,7 +356,7 @@ footer{color:var(--muted);font-size:.82rem}
   <h2><span class="sec-num">09</span>References and data sources</h2>
   <div id="reflist"></div>
 </section>
-<footer>Prepared for the Alamance Growth Data Challenge, October 2026. Map boundaries: U.S. Census Bureau cartographic files. Parcel samples: Alamance County GIS, tax parcels, accessed October 2026.</footer>
+
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
@@ -368,7 +417,7 @@ function drawGeo(){
    const sel=g.selectAll("path.f").data(fc.features).join("path").attr("d",path)
      .attr("fill",fill).attr("fill-opacity",lay==="places"?.75:lay==="zips"?.35:0).attr("stroke",lay==="tracts"||lay==="townships"?acc:fg).attr("stroke-width",lay==="tracts"?.8:1.2);
    hover(sel,d=>{const p=d.properties; if(lay==="zips") return `<b>${ZNAME[p.ZIP]}</b><br>${ZSHARE[p.ZIP]?ZSHARE[p.ZIP]+"% of working residents live in Alamance":"Tiny ZIP, not in the ZIP panel"}`; if(lay==="tracts") return `<b>Census tract ${p.NAME}</b><br>GEOID ${p.GEOID}`; return `<b>${p.NAMELSAD||p.NAME+" Township"}</b>`});
-   const lab=g.selectAll("text.l").data(fc.features.filter(f=>lay!=="tracts"&&!(lay==="zips"&&!ZSHARE[f.properties.ZIP]))).join("text").attr("transform",d=>`translate(${path.centroid(d)})`).attr("text-anchor","middle").attr("font-size",lay==="zips"?12:11).attr("fill",fg).attr("pointer-events","none").attr("font-weight",600).text(d=>lay==="zips"?d.properties.ZIP:d.properties.NAME);
+   const lab=g.selectAll("text.l").data(fc.features.filter(f=>lay!=="tracts"&&!(lay==="zips"&&!ZSHARE[f.properties.ZIP]))).join("text").attr("transform",d=>`translate(${path.centroid(d)})`).attr("text-anchor","middle").attr("font-size",lay==="zips"?15:13).attr("fill",fg).attr("pointer-events","none").attr("font-weight",600).text(d=>lay==="zips"?d.properties.ZIP:d.properties.NAME);
    lab.attr("paint-order","stroke").attr("stroke",css("--panel")).attr("stroke-width",3);
    if(lay==="zips") legend=`<span class="sw" style="background:${acc};opacity:.5"></span>90% or more in Alamance <span class="sw" style="background:${css("--gold")};opacity:.6;margin-left:8px"></span>Partly outside <span class="sw" style="background:${fg};height:2px;margin-left:8px"></span>County line`;
    else if(lay==="places") legend=`Colored areas are incorporated towns; the rest of the county is Unincorporated.`;
@@ -376,7 +425,7 @@ function drawGeo(){
   } else {
    const s=[["Burlington",-79.437,36.094],["Graham",-79.400,36.069],["Mebane",-79.267,36.096],["Elon",-79.506,36.103]];
    g.selectAll("circle").data(s).join("circle").attr("cx",d=>proj([d[1],d[2]])[0]).attr("cy",d=>proj([d[1],d[2]])[1]).attr("r",4).attr("fill",fg);
-   g.selectAll("text.t").data(s).join("text").attr("x",d=>proj([d[1],d[2]])[0]+7).attr("y",d=>proj([d[1],d[2]])[1]+4).attr("font-size",12).attr("fill",fg).text(d=>d[0]);
+   g.selectAll("text.t").data(s).join("text").attr("x",d=>proj([d[1],d[2]])[0]+7).attr("y",d=>proj([d[1],d[2]])[1]+5).attr("font-size",15).attr("fill",fg).text(d=>d[0]);
    const pr=[["Graham sample",GEO.parcels_graham],["Mebane sample",GEO.parcels_mebane]];
    pr.forEach(([n,fc])=>{const b=path.bounds(fc);g.append("rect").attr("x",b[0][0]).attr("y",b[0][1]).attr("width",Math.max(4,b[1][0]-b[0][0])).attr("height",Math.max(4,b[1][1]-b[0][1])).attr("fill","none").attr("stroke",css("--gold")).attr("stroke-width",2)});
    legend=`<span class="sw" style="background:${ctx}"></span>Neighboring counties <span class="sw" style="border:2px solid ${css("--gold")};margin-left:8px"></span>Parcel sample areas shown at the Parcels level`;
@@ -413,17 +462,17 @@ function drawZip(){
   .on("mouseleave",()=>hide(tp)).on("click",(e,d)=>{focus=d.properties.ZIP;drawZip()});
  zsvg.selectAll("path.z").raise();
  zsvg.selectAll("path").filter(d=>d&&d.properties&&d.properties.ZIP===focus).raise();
- zsvg.selectAll("text").data(zfc.features).join("text").attr("transform",d=>`translate(${path.centroid(d)})`).attr("text-anchor","middle").attr("font-size",11).attr("font-weight",600).attr("fill",css("--fg")).attr("paint-order","stroke").attr("stroke",css("--panel")).attr("stroke-width",3).attr("pointer-events","none").text(d=>d.properties.ZIP);
+ zsvg.selectAll("text").data(zfc.features).join("text").attr("transform",d=>`translate(${path.centroid(d)})`).attr("text-anchor","middle").attr("font-size",14).attr("font-weight",600).attr("fill",css("--fg")).attr("paint-order","stroke").attr("stroke",css("--panel")).attr("stroke-width",3).attr("pointer-events","none").text(d=>d.properties.ZIP);
  const th=sc.thresholds(), bounds=[ext[0],...th,ext[1]];
  $("#ziplegend").innerHTML=PAL.map((c,i)=>`<span class="li"><span class="sw" style="background:${c}"></span>${fmt(bounds[i],m.unit)}–${fmt(bounds[i+1],m.unit)}</span>`).join("")+`<span class="li"><span class="sw" style="background:${nod};border:1px solid var(--line)"></span>no data</span><span class="li"><span class="sw" style="border:2px dashed ${css("--fg")};height:8px"></span>county line</span>`;
  // chart
  csvg.selectAll("*").remove();
- const w=440,h=330,ml=62,mr=16,mt=14,mb=30;
+ const w=440,h=330,ml=56,mr=16,mt=14,mb=32;
  const x=d3.scaleLinear().domain([2010,2025]).range([ml,w-mr]), y=d3.scaleLinear().domain(d3.extent(all)).nice().range([h-mb,mt]);
  const grid=css("--line"), mu=css("--muted");
  csvg.append("g").selectAll("line").data(y.ticks(5)).join("line").attr("x1",ml).attr("x2",w-mr).attr("y1",d=>y(d)).attr("y2",d=>y(d)).attr("stroke",grid);
- csvg.append("g").selectAll("text").data(y.ticks(5)).join("text").attr("x",ml-6).attr("y",d=>y(d)+4).attr("text-anchor","end").attr("font-size",10.5).attr("fill",mu).text(d=>m.unit==="$"?"$"+d3.format("~s")(d):m.unit==="%"?d+"%":d3.format("~s")(d));
- csvg.append("g").selectAll("text").data([2010,2013,2016,2019,2022,2025]).join("text").attr("x",d=>x(d)).attr("y",h-10).attr("text-anchor","middle").attr("font-size",10.5).attr("fill",mu).text(d=>d);
+ csvg.append("g").selectAll("text").data(y.ticks(5)).join("text").attr("x",ml-6).attr("y",d=>y(d)+4).attr("text-anchor","end").attr("font-size",13).attr("fill",mu).text(d=>m.unit==="$"?"$"+d3.format("~s")(d):m.unit==="%"?d+"%":d3.format("~s")(d));
+ csvg.append("g").selectAll("text").data([2010,2013,2016,2019,2022,2025]).join("text").attr("x",d=>x(d)).attr("y",h-8).attr("text-anchor","middle").attr("font-size",13).attr("fill",mu).text(d=>d);
  csvg.append("line").attr("x1",x(yr)).attr("x2",x(yr)).attr("y1",mt).attr("y2",h-mb).attr("stroke",css("--gold")).attr("stroke-dasharray","3 3");
  const ln=d3.line().defined(d=>d[1]!=null).x(d=>x(d[0])).y(d=>y(d[1]));
  const others=Z9.filter(z=>z!==focus).concat([focus]);
@@ -453,14 +502,14 @@ drawZip();
  const boxes=[["Permits","27,241 rows · one per permit",40,40,"Parcel ID, Area, Year, Address, Lat/Long"],["Parcels","79,870 rows · one per property",380,40,"Parcel ID, Area, Township, Year Built, Site Address, Lat/Long"],["Areas","11 rows · one per town",720,40,"Area, Square Miles, Permit Coverage"],
  ["ZIP-year summary","built by you · ZIP × year",380,190,"ZIP Code, Year, homes built, permits issued"],["ZIP panel","144 rows · 9 ZIPs × 16 years",720,190,"ZIP Code, Year, 41 measures"]];
  s.append("defs").append("marker").attr("id","ka").attr("viewBox","0 0 10 10").attr("refX",9).attr("refY",5).attr("markerWidth",6).attr("markerHeight",6).attr("orient","auto-start-reverse").append("path").attr("d","M0 0L10 5L0 10z").attr("fill",mu);
- const links=[[240,77,380,77,"Parcel ID (many to one)"],[580,77,720,77,"Area (many to one)"],[480,114,480,190,"ZIP from address or point-in-polygon"],[140,114,140,227,""],[140,227,380,227,"ZIP, then count by Year"],[580,227,720,227,"ZIP Code + Year"]];
+ const links=[[240,77,380,77,"Parcel ID"],[580,77,720,77,"Area"],[480,114,480,190,"ZIP from address or point-in-polygon"],[140,114,140,227,""],[140,227,380,227,"ZIP, then count by Year"],[580,227,720,227,"ZIP Code + Year"]];
  links.forEach(([x1,y1,x2,y2,t],i)=>{s.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2).attr("stroke",mu).attr("stroke-width",1.3).attr("marker-end",t||i!==3?"url(#ka)":null);
-  if(t){const vert=x1===x2; s.append("text").attr("x",vert?x1+8:(x1+x2)/2).attr("y",vert?(y1+y2)/2+4:y1-8).attr("text-anchor",vert?"start":"middle").attr("font-size",12).attr("fill",mu).text(t)}});
+  if(t){const vert=x1===x2; s.append("text").attr("x",vert?x1+8:(x1+x2)/2).attr("y",vert?(y1+y2)/2+4:y1-8).attr("text-anchor",vert?"start":"middle").attr("font-size",13.5).attr("fill",mu).text(t)}});
  boxes.forEach(([n,sub,x,y,keys],i)=>{const g=s.append("g");g.append("rect").attr("x",x).attr("y",y).attr("width",i===1||i===3?200:200).attr("height",74).attr("rx",8).attr("fill",i===3?css("--accent-soft"):pn).attr("stroke",i===3?acc:ln).attr("stroke-width",i===3?2:1.2);
-  g.append("text").attr("x",x+12).attr("y",y+22).attr("font-size",14).attr("font-weight",700).attr("fill",fg).text(n);
-  g.append("text").attr("x",x+12).attr("y",y+40).attr("font-size",11).attr("fill",mu).text(sub);
+  g.append("text").attr("x",x+12).attr("y",y+22).attr("font-size",16).attr("font-weight",700).attr("fill",fg).text(n);
+  g.append("text").attr("x",x+12).attr("y",y+42).attr("font-size",12.5).attr("fill",mu).text(sub);
   const words=keys.split(", "); let line="",ly=y+58; const lines=[];words.forEach(w=>{if((line+w).length>30){lines.push(line);line=""}line+=(line?", ":"")+w});lines.push(line);
-  g.append("text").attr("x",x+12).attr("y",ly).attr("font-size",10.5).attr("fill",acc).text(lines[0]+(lines.length>1?"…":""));
+  g.append("text").attr("x",x+12).attr("y",ly+2).attr("font-size",12).attr("fill",acc).text(lines[0]+(lines.length>1?"…":""));
   g.append("title").text(keys);});
 })();
 
@@ -501,27 +550,28 @@ $("#joincode").textContent=CODE.py;
 const DD={"starter": {"title": "Alamance_Growth_Starter_Data.xlsx", "sum": "One Excel workbook from the Alamance County Open Data GIS portal, trimmed and relabeled so you can start analyzing right away. The Area column appears on both Parcels and Permits, so you can compare the same places across the two sheets. Parcel ID also appears on both and links a permit to its property for about 84% of permits. Blank cells mean the county recorded no value; Year Built, for example, is blank for land with no building.", "sheets": [["Parcels", "One piece of property on the tax rolls", "79,870", "The whole county, tax year 2026"], ["Permits", "One county inspection permit", "27,241", "January 2019 to August 2026; not the whole county"], ["Areas", "One municipality, plus Unincorporated", "11", "Size of each area and whether the Permits sheet covers it"]], "limits": [["The Permits sheet does not cover Burlington, Graham or Mebane.", "Only 79 of its 27,241 permits fall inside those three cities, which appear to issue their own permits. A low permit count there does not mean nothing is being built."], ["Use Parcels for the three big cities.", "Year Built on the Parcels sheet covers every area, so it is the only way to see recent construction in Burlington, Graham and Mebane."], ["2019 and 2020 look incomplete.", "The sheet has 594 permits for 2019 and 1,640 for 2020, then 3,771 for 2021. Treat that jump as a record-keeping change, not growth. 2026 stops in August."], ["A permit is not a new building.", "Only 4,079 permits are Residential building and 448 are Commercial building. The rest are trade work, plan reviews, well inspections and complaints. Even building permits include garages and remodels, so read the Description."], ["Construction Cost is patchy.", "It is blank for 36% of permits, and a few very large projects (the largest is $69 million) dominate any total."], ["Parcels is a snapshot of today.", "It shows the current building and the most recent sale only. You cannot see what a parcel looked like in 2019."], ["Land Use Group and Permit Group are simplified.", "They were added for this challenge. The county's own wording is in Land Use Detail and Permit Type. 5,393 parcels did not fit a group and are labeled Other / unclassified."], ["Some permits have no location.", "117 are labeled Not located, and Township is blank for about 12%."], ["What is not here.", "Nothing in this workbook measures population, income, jobs, business names or zoning. If your recommendation depends on one of those, say so. If you want to explore other data that can support it, please do so."]], "cols": {"Parcels": [["Parcel ID", "The county's 10-digit parcel number. Links to the Permits sheet. 123 IDs appear on more than one row."], ["Site Address", "Street address of the property"], ["Area", "Municipality the parcel sits in, or Unincorporated"], ["Township", "One of 13 townships that divide the whole county, useful for splitting up Unincorporated"], ["Land Use Group", "Simplified type: Residential, Commercial, Industrial, Farm, Vacant land, Public / institutional, Other / unclassified"], ["Land Use Detail", "The county's own land use label (166 different values)"], ["Acres", "Size of the parcel"], ["Land Value", "Assessed value of the land, in dollars"], ["Building Value", "Assessed value of buildings and other improvements, in dollars"], ["Total Assessed Value", "Land plus buildings, in dollars"], ["Year Built", "Year the main building was built. Blank if there is no building."], ["Finished Sq Ft", "Finished floor area of the main building"], ["Bedrooms, Bathrooms, Stories", "For the main building"], ["Building Style", "For example Ranch or Colonial"], ["Quality Grade", "The assessor's construction quality rating"], ["Last Sale Date", "Most recent sale, 1990 through 2025"], ["Last Sale Price", "Price of that sale in dollars. Blank for 44% of parcels, and many recorded sales are between relatives."], ["Neighborhood", "The assessor's neighborhood name"], ["Latitude, Longitude", "A point inside the parcel, for mapping"]], "Permits": [["Permit Number", "Unique ID for the permit"], ["Date Issued", "Blank for 9% of permits. Use Year when you need every row."], ["Year", "Year of the permit, 2019 to 2026"], ["Permit Group", "Simplified type: Residential building, Commercial building, Manufactured / modular home, Trade work, Plan review, Well inspection, Fire, Complaint, Other"], ["Permit Type", "The county's own permit type (15 values)"], ["Status", "For example Closed, Passed or Active"], ["Description", "Free text describing the work"], ["Address", "Street address with mailing city. The mailing city is often not the municipality, so use Area instead."], ["Area", "Municipality the permit falls in, Unincorporated, or Not located"], ["Township", "Township the permit falls in"], ["Parcel ID", "Links to the Parcels sheet. Blank for 14% of permits."], ["Square Feet", "Size of the work. Blank for 76% of permits."], ["Bedrooms, Bathrooms, Stories", "Mostly filled only for new homes"], ["Construction Cost", "Stated cost of the work in dollars. Blank for 36% of permits."], ["Latitude, Longitude", "Location of the permit, for mapping"]], "Areas": [["Area", "The 10 municipalities, plus Unincorporated"], ["Kind", "City, Town or Village"], ["Square Miles", "Land inside the municipal boundary. Not given for Unincorporated."], ["Parcels in file", "Rows on the Parcels sheet for that area"], ["Permits in file", "Rows on the Permits sheet for that area"], ["Permit Coverage", "Whether the Permits sheet can be trusted for that area"]]}, "ex": {"q": "In which area are single-family homes largest on average?", "note": "This is not one of the challenge questions. It is designed to help you get started.", "steps": ["Open the workbook and click any cell on the Parcels sheet.", "Choose Insert, then PivotTable, then New Worksheet, then OK.", "Drag Land Use Detail to Filters. In the filter at the top of the sheet, choose SINGLE FAMILY.", "Drag Area to Rows.", "Drag Finished Sq Ft to Values. Click it, choose Value Field Settings, and change Sum to Average.", "Drag Parcel ID to Values. Change it to Count, so you can see how many homes are behind each average.", "Right-click any average, choose Sort, then Sort Largest to Smallest."], "head": ["Area", "Average finished sq ft", "Homes"], "bar": 1, "rows": [["Elon", 2261, 1829], ["Swepsonville", 2243, 973], ["Alamance", 2226, 381], ["Mebane", 2004, 4316], ["Gibsonville", 1911, 1572], ["Unincorporated", 1786, 18446], ["Graham", 1676, 5615], ["Burlington", 1658, 16284], ["Green Level", 1503, 663], ["Haw River", 1354, 703], ["Ossipee", 1354, 194]], "checks": [["How many rows are behind each number?", "Ossipee's average rests on 194 homes and Burlington's on 16,284. Small groups move more easily, so be careful ranking them."], ["Are there blanks?", "766 single-family parcels have no finished area. Excel leaves them out of the average but still counts them under Homes."], ["Are there extreme values?", "The largest home is 18,000 sq ft. Sort the column to look at the top few rows and decide whether they distort the picture."], ["Is the average the right measure?", "A few very large homes pull an average up. Filtering to one area and using the MEDIAN function on the column is a fair cross-check."]], "statement": "Single-family homes are largest in Elon, Swepsonville and the Village of Alamance, averaging about 2,200 to 2,300 finished square feet, compared with about 1,660 in Burlington. This describes the homes standing today and says nothing about who lives in them or what is being built now."}}, "zip": {"title": "Alamance_Growth_ZIP_Panel.xlsx", "sum": "One row per ZIP code per year for the nine ZIP areas that cover Alamance County, 2010 to 2025, compiled from public federal sources and Zillow. ZIP Code and Year together identify each row and are the keys for joining your own ZIP-by-year summaries of the starter data. Blank cells mean the source publishes no value for that ZIP and year.", "sheets": [["ZIP_List", "One ZIP code", "9", "Counties each ZIP touches and its share inside Alamance"], ["ZIP_Panel", "One ZIP code in one year", "144", "2010 to 2025; latest year varies by source"], ["Data_Availability", "One measure", "38", "How many ZIPs have a value in each year"], ["Data_Dictionary", "One column", "28", "Definition, unit, source and field code"]], "limits": [["ZIP codes cross the county line.", "Each ZIP figure covers the whole ZIP area. Liberty (27298) and Gibsonville (27249) lie mostly in neighboring counties, and about a third of Mebane's (27302) working residents live outside Alamance. Check ZIP_List before comparing ZIPs."], ["Three tiny ZIPs are left out.", "27201 Alamance, 27202 Altamahaw and 27340 Saxapahaw together hold fewer than 350 residents and most sources suppress them."], ["Census survey columns are 5-year averages.", "The value labeled 2024 comes from surveys collected 2020 to 2024. Adjacent years share four of five years, so compare periods at least five years apart, such as 2014, 2019 and 2024."], ["Survey estimates carry margins of error.", "Small ZIPs such as Haw River and Snow Camp have the widest error. A change of a few hundred people or housing units there may not be real."], ["Sources end in different years.", "Census survey 2011 to 2024, IRS 2011 to 2022, businesses and jobs 2010 to 2023, house prices 2010 to 2025. Bachelor's degree data start in 2012."], ["Some business values are withheld.", "Business Patterns blanks out employees and payroll when publishing them could identify a single employer."], ["Zillow coverage is uneven.", "Zillow values for Graham and Haw River begin in 2016."], ["Dollars are not adjusted for inflation.", "Income, rents, values and payroll are in the dollars of each year. Percentages are stored as numbers from 0 to 100."], ["Jobs and residents are counted differently.", "LODES counts jobs where people work and workers where they live, so a ZIP can have many more jobs than working residents."]], "cols": {"ZIP_List": [["ZIP Code", "Five-digit ZIP code area (Census ZCTA), stored as text"], ["Place", "Name used throughout the workbook"], ["Counties the ZIP touches", "Largest land share first"], ["Land in Alamance (%)", "Share of the ZIP's land inside the county"], ["Employed residents living in Alamance, 2023 (%)", "Share of the ZIP's working residents who live inside the county; the better guide to how much of each ZIP figure is Alamance"], ["Use with care", "Flags ZIPs that are partly or mostly outside the county"]], "ZIP_Panel": [["ZIP Code, Place, Year", "Row keys"], ["Population, Households, Median Age", "Census survey, 5-year"], ["Median Household Income ($)", "Census survey, dollars of the period's last year"], ["Poverty Rate (%)", "People below the poverty line"], ["Unemployment Rate (%)", "Unemployed share of the civilian labor force"], ["Bachelor's Degree or Higher (%)", "Adults 25 and older; starts 2012"], ["Moved In Past Year (%)", "Residents who lived elsewhere a year earlier"], ["Housing Units, Vacancy Rate (%)", "All housing units and the vacant share"], ["Owner-Occupied Households (%)", "Owner-occupied share of occupied units"], ["Median Home Value ($), Median Gross Rent ($)", "Owner-occupied units; renter units paying cash rent"], ["Renters Paying 30%+ of Income on Rent (%)", "Rent-burdened renter households"], ["Tax Returns Filed", "IRS; approximates households"], ["Total Adjusted Gross Income ($ thousands)", "IRS; sum of AGI on all returns"], ["Returns with Wages, Total Wages ($ thousands)", "IRS wage earners and wages"], ["Returns with Business Income", "IRS returns with self-employment income"], ["Business Establishments", "Workplaces with paid employees (Business Patterns)"], ["Employees at Establishments, Annual Payroll ($ thousands)", "Business Patterns; blank when withheld"], ["Jobs at Workplaces in ZIP", "LODES; all jobs located in the ZIP"], ["Jobs Paying Over $3,333/Month", "LODES; higher-wage jobs"], ["Sector job columns", "LODES; construction, manufacturing, retail, transportation and warehousing, health care, accommodation and food"], ["Employed Residents of ZIP", "LODES; workers who live in the ZIP"], ["FHFA House Price Index (2000=100), FHFA Annual Price Change (%)", "Repeat-sales price index for single-family homes"], ["Zillow Typical Home Value ($)", "Zillow Home Value Index, annual average"], ["Average AGI per Return ($)", "Formula: AGI × 1,000 ÷ returns"], ["Returns with Business Income (%)", "Formula: business returns ÷ all returns"], ["Average Annual Pay per Employee ($)", "Formula: payroll × 1,000 ÷ employees"], ["Jobs per Employed Resident", "Formula: jobs ÷ working residents; above 1 means the ZIP draws in workers"]], "Data_Availability": [["Source, Measure", "Each row is one ZIP_Panel column"], ["2010 to 2025", "Number of the nine ZIPs with a value that year; computed by formula from ZIP_Panel"], ["First year, Last year", "The span you can analyze for that measure"]], "Data_Dictionary": [["Column", "Column name on ZIP_Panel"], ["Meaning", "What the column measures"], ["Source", "Agency and dataset"], ["Table or field", "Original table or field code, for looking up details"]]}, "ex": {"q": "Which ZIP codes added the most housing over the last decade?", "note": "This is not one of the challenge questions. It shows how to compare two survey periods that do not overlap.", "steps": ["Open the ZIP panel and click any cell on the ZIP_Panel sheet.", "Choose Insert, then PivotTable, then New Worksheet, then OK.", "Drag Place to Rows and Year to Columns.", "Filter Year to show only 2014 and 2024. These cover 2010 to 2014 and 2020 to 2024, so no survey year is shared.", "Drag Housing Units to Values and keep Sum.", "In the next empty column, compute percent change: =(2024 value − 2014 value) ÷ 2014 value.", "Sort by percent change, largest to smallest."], "head": ["Place", "Housing units, 2010–2014", "Housing units, 2020–2024", "Change (%)"], "bar": 3, "rows": [["Mebane", 12445, 15733, 26.4], ["Graham", 12662, 15339, 21.1], ["Gibsonville", 5503, 6359, 15.6], ["Burlington (27215)", 19433, 21908, 12.7], ["Burlington (27217)", 15473, 17281, 11.7], ["Elon", 4825, 5360, 11.1], ["Snow Camp", 2854, 2918, 2.2], ["Haw River", 2764, 2636, -4.6], ["Liberty", 4380, 4153, -5.2]], "checks": [["Is the whole ZIP in Alamance?", "About a third of Mebane's working residents live in Orange or Caswell County, and Gibsonville and Liberty lie mostly outside Alamance. Part of their growth happened across the county line."], ["Could the change be survey error?", "The small declines in Haw River and Liberty may fall within the survey's margins of error. Cross-check with homes built since 2015 from Year Built on the Parcels sheet."], ["Count or rate?", "Burlington 27215 added 2,475 units, close to Graham's 2,677, yet its rate is lower because it started larger. Report both."], ["Do the periods overlap?", "2014 and 2024 share no survey years. Comparing 2023 with 2024 would mostly compare the same surveys."]], "statement": "Between the 2010 to 2014 and 2020 to 2024 survey periods, housing units grew fastest in the Mebane (26%) and Graham (21%) ZIP codes, which together added about 6,000 units. Part of the Mebane ZIP lies outside Alamance, and the small declines in Haw River and Liberty may reflect survey error."}}}; let df="starter", dsheet=null;
 function drawDict(){const d=DD[df]; if(!dsheet||!d.cols[dsheet]) dsheet=Object.keys(d.cols)[0];
  $("#dictsummary").innerHTML=`<div class="title" style="font-weight:700">${d.title}</div><p class="small" style="margin-top:6px">${d.sum}</p><div class="tbl" style="margin-top:10px"><table><tr><th>Sheet</th><th>One row is</th><th class="n">Rows</th><th>Covers</th></tr>${d.sheets.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td class="n">${r[2]}</td><td>${r[3]}</td></tr>`).join("")}</table></div>`;
- $("#dictlimits").innerHTML=d.limits.map(l=>`<li><b>${l[0]}</b> ${l[1]}</li>`).join("");
+ $("#dictlimits").innerHTML=d.limits.map(l=>`<li><b class="t-limit">${l[0]}</b> ${l[1]}</li>`).join("");
  $("#dictsheets").innerHTML=Object.keys(d.cols).map(k=>`<button data-s="${k}" class="${k===dsheet?"on":""}">${k}</button>`).join("");
  document.querySelectorAll("#dictsheets button").forEach(b=>b.onclick=()=>{dsheet=b.dataset.s;drawDict()});
  $("#dictcols").innerHTML=`<table><tr><th>Column</th><th>What it means</th></tr>${d.cols[dsheet].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td></tr>`).join("")}</table>`;
  const e=d.ex, bi=e.bar, vals=e.rows.map(r=>r[bi]), mx=Math.max(...vals.map(Math.abs));
  const f=v=>typeof v==="number"?(Number.isInteger(v)?d3.format(",")(v):d3.format(".1f")(v)):v;
- $("#dictexample").innerHTML=`<div><span class="tag">Worked example</span></div><b style="font-size:1.05rem">${e.q}</b><p class="small muted">${e.note}</p>
+ $("#dictexample").innerHTML=`<b style="font-size:1.15rem;color:var(--accent)">Worked example: ${e.q}</b><p class="small muted">${e.note}</p>
  <div class="grid2"><div><b class="small">Build the PivotTable</b><ol class="small" style="margin:6px 0 0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px">${e.steps.map(s=>`<li>${s}</li>`).join("")}</ol></div>
  <div><b class="small">What you should see</b><div class="tbl" style="margin-top:6px"><table><tr>${e.head.map((h,i)=>`<th class="${i?"n":""}">${h}</th>`).join("")}<th style="width:28%"></th></tr>${e.rows.map(r=>`<tr>${r.map((v,i)=>`<td class="${i?"n":""}">${f(v)}</td>`).join("")}<td><span style="display:inline-block;height:10px;border-radius:2px;width:${Math.abs(r[bi])/mx*100}%;background:${r[bi]<0?"var(--gold)":"var(--accent)"}"></span></td></tr>`).join("")}</table></div></div></div>
- <div><b class="small">Check before you believe it</b><ul class="plain small" style="margin-top:6px;gap:6px">${e.checks.map(c=>`<li><b>${c[0]}</b> ${c[1]}</li>`).join("")}</ul></div>
+ <div><b class="small">Check before you believe it</b><ul class="plain small" style="margin-top:6px;gap:6px">${e.checks.map(c=>`<li><b class="t-check">${c[0]}</b> ${c[1]}</li>`).join("")}</ul></div>
  <div class="q" style="font-weight:400;font-size:.95rem"><b>State the finding with its limit.</b> "${e.statement}"<small>For the challenge, add the two things this example leaves out: who should act, and what they should do.</small></div>`;}
 document.querySelectorAll("#dictfile button").forEach(b=>b.onclick=()=>{df=b.dataset.f;dsheet=null;document.querySelectorAll("#dictfile button").forEach(x=>x.classList.toggle("on",x===b));drawDict()});
 drawDict();
 
 /* ---------- questions ---------- */
-const QG=[["Where","Where in the county has growth happened since 2010?","Is growth spreading outward from the existing towns or filling in around them?","Year Built and location on Parcels; Housing Units by ZIP","Population, income and job columns until you know where growth is","Map homes built by decade; chart housing units by ZIP"],
-["What goes with it","How do the fastest-growing areas differ from the rest?","Does new construction follow jobs, major roads, cheaper land or rising prices?","Pick one or two candidate drivers, such as Jobs at Workplaces or the FHFA price index, plus Land Value and Acres on Parcels","Long lists of predictors fitted all at once; nine ZIPs cannot support them","Compare growing and slower ZIPs on your chosen drivers; fit one small model"],
-["Who is affected","How have home values, rents and rent burden changed where growth is fastest?","Which residents may benefit, and which may be priced out?","Median Gross Rent, Renters Paying 30%+ and Median Home Value, compared five years apart","IRS and business columns unless your story is about income or employers","Track rent burden in the two or three ZIPs that grew most"],
-["What comes next","Which areas are likely to see the most new homes over the next few years?","How much better than a simple rule can a model predict it?","Past homes built per area and year, plus one leading indicator such as job or price change from the year before","Any column measured after the year you predict","Train on earlier years, test on the latest, compare with last year's count"],
-["So what","Who should act on your findings, and what should they do?","What would they need to know that the data cannot yet tell them?","Your two or three strongest findings and the known limits that affect them","Findings that do not change the recommendation","Write the recommendation as actor, action, evidence and limit"]];
-$("#models").innerHTML=QG.map(q=>`<div class="card model"><div><span class="tag">${q[0]}</span></div><b>${q[1]}</b><p class="small">${q[2]}</p><dl class="kv"><dt>Start with</dt><dd>${q[3]}</dd><dt>Leave aside</dt><dd>${q[4]}</dd><dt>One way in</dt><dd>${q[5]}</dd></dl></div>`).join("");
+const QG=[["Where","Where in the county has growth happened since 2010?","Year Built and location on the Parcels sheet"],
+["What goes with it","How do the fastest-growing areas differ from the rest?","Your growth measure, plus one or two possible drivers from the ZIP panel"],
+["Who is affected","How have home values and rents changed where growth is fastest?","The rent, rent burden and home value columns in the ZIP panel"],
+["What comes next","Which areas are likely to see the most new homes in the next few years?","Homes built per area and year, from Year Built"],
+["So what","Who should act on your findings, and what should they do?","Your strongest finding and the known limits that affect it"]];
+const QC=["#73000a","#527b82","#b7410e","#788a38","#b59a57"];
+$("#models").innerHTML=QG.map((q,i)=>`<div class="card model" style="border-top:5px solid ${QC[i]}"><span style="color:${QC[i]};font-weight:700">${q[0]}</span><b style="font-size:1.1rem">${q[1]}</b><p><span class="k-start" style="font-weight:700;color:var(--teal)">Where to start:</span> ${q[2]}</p></div>`).join("");
 function skill(){const b=+$("#mb").value,m=+$("#mm").value; const s=b>0?1-m/b:NaN; $("#skill").innerHTML=isNaN(s)?"Enter a baseline above zero":`Skill = ${d3.format(".2f")(s)} <span class="muted small" style="font-weight:400">${s>0?`the model removes ${d3.format(".0%")(s)} of the baseline's error`:"the model does no better than the baseline"}</span>`}
 $("#mb").oninput=skill;$("#mm").oninput=skill;skill();
 
@@ -539,13 +589,13 @@ const EV=[["Analysts struggle to verify AI output","Gu, Shang, et al. (2024), CH
 ["AI suggestions widen the options analysts consider","Gu, Grunde-McLaughlin, et al. (2024), CHI","Planning suggestions from an assistant led analysts to consider analysis choices they had not planned, which can make conclusions more robust when each alternative is tested."],
 ["Language models approach human analysts on routine tasks","Cheng et al. (2023), Findings of EMNLP","In end-to-end analysis tasks, GPT-4 output was comparable to that of human analysts on several quality measures, and the authors still recommend further study before relying on it without review."],
 ["Leakage makes models look better than they are","Kapoor & Narayanan (2023), Patterns","A review of machine-learning studies across 17 fields found leakage in 294 papers. When leakage was removed from civil war prediction studies, complex models did no better than logistic regression."]];
-$("#evidence").innerHTML=EV.map(e=>`<div class="card"><b>${e[0]}</b><div class="small muted">${e[1]}</div><p class="small" style="margin-top:6px">${e[2]}</p></div>`).join("");
+$("#evidence").innerHTML=EV.map(e=>`<div class="card" style="border-left:4px solid var(--teal)"><b style="color:var(--accent)">${e[0]}</b><div class="small muted">${e[1]}</div><p class="small" style="margin-top:6px">${e[2]}</p></div>`).join("");
 
 /* ---------- log builder ---------- */
 $("#f_stage").innerHTML=ST.map(s=>`<option>${s[0]}</option>`).join("");
 try{$("#f_date").valueAsDate=new Date()}catch(e){}
 let LOG=store.get("aiLog",[{date:"2026-10-20",member:"A. Student",stage:"Data preparation",tool:"[product and model]",req:"Write a filter that identifies new-home permits from Description",ver:"Hand-checked 50 kept and 50 dropped rows; found 6 garages",dec:"Modified",why:"Added exclusions for garages and additions",example:true}]);
-function drawLog(){ $("#logtbl").innerHTML=`<table><tr><th>#</th><th>Date</th><th>Member</th><th>Stage</th><th>Tool</th><th>Request</th><th>Verification</th><th>Decision</th></tr>${LOG.map((r,i)=>`<tr><td>${i+1}${r.example?' <span class="tag">example</span>':""}</td><td style="white-space:nowrap">${esc(r.date)}</td><td>${esc(r.member)}</td><td>${esc(r.stage)}</td><td>${esc(r.tool)}</td><td>${esc(r.req)}</td><td>${esc(r.ver)}</td><td>${esc(r.dec)}${r.why?": "+esc(r.why):""}</td></tr>`).join("")}</table>`;}
+function drawLog(){ $("#logtbl").innerHTML=`<table><tr><th>#</th><th>Date</th><th>Member</th><th>Stage</th><th>Tool</th><th>Request</th><th>Verification</th><th>Decision</th></tr>${LOG.map((r,i)=>`<tr><td>${i+1}${r.example?' <span class="muted">(example)</span>':""}</td><td style="white-space:nowrap">${esc(r.date)}</td><td>${esc(r.member)}</td><td>${esc(r.stage)}</td><td>${esc(r.tool)}</td><td>${esc(r.req)}</td><td>${esc(r.ver)}</td><td>${esc(r.dec)}${r.why?": "+esc(r.why):""}</td></tr>`).join("")}</table>`;}
 function esc(s){return String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 $("#logform").addEventListener("submit",e=>{e.preventDefault();const r={date:$("#f_date").value,member:$("#f_member").value.trim(),stage:$("#f_stage").value,tool:$("#f_tool").value.trim(),req:$("#f_req").value.trim(),ver:$("#f_ver").value.trim(),dec:$("#f_dec").value,why:$("#f_why").value.trim()};
  if(!r.member||!r.req||!r.ver){$("#logmsg").textContent="Add the team member, the request and how you checked it; an entry without a check is incomplete.";return}
@@ -560,7 +610,7 @@ const ID=[["Label permit descriptions with a language model","Large language mod
 ["Generate charts with AI and verify each one","LIDA uses a language model to summarize data, propose goals and write chart code (Dibia, 2023).","Share of generated charts whose numbers match the workbook exactly."],
 ["Use AI to propose alternative model specifications","Planning suggestions broaden the choices analysts consider (Gu, Grunde-McLaughlin, et al., 2024); a multiverse analysis tests all reasonable choices together (Steegen et al., 2016).","How many of your diagnostic findings keep their sign and significance across the alternatives."],
 ["Audit data quality with AI-drafted rules","Analysts verify AI output by inspecting intermediate tables (Gu, Shang, et al., 2024).","Issues found by AI-drafted validation rules compared with a manual audit of the same sheets."]];
-$("#ideas").innerHTML=ID.map(d=>`<div class="card"><b>${d[0]}</b><p class="small" style="margin-top:6px">${d[1]}</p><p class="small muted" style="margin-top:6px"><b>What to check:</b> ${d[2]}</p></div>`).join("");
+$("#ideas").innerHTML=ID.map(d=>`<div class="card" style="border-left:4px solid var(--gold)"><b>${d[0]}</b><p class="small" style="margin-top:6px">${d[1]}</p><p class="small" style="margin-top:6px"><b class="t-check">What to check:</b> ${d[2]}</p></div>`).join("");
 
 /* ---------- checklist ---------- */
 const CK=["Question stated in one sentence with a named decision maker","One focused question and a shortlist of three to five measures, each with a reason","Every join checked for row counts and unmatched rows","Predictive model compared with a baseline on untouched test data","Recommendation names actor, action, evidence and limit","Every number in the presentation traced to a cell or line of code","Result files shared: workbooks, code and AI-use log","Reflection written and every AI tool cited","Future work and next steps included","Presentation rehearsed with every team member speaking","Ready for judges' questions"];
@@ -588,7 +638,6 @@ function show(id){ if(!panels.some(p=>p.id===id)) id="challenge";
  store.set("tab",id); window.scrollTo(0,0);
  const t=tabs.find(a=>a.classList.contains("on")); if(t) t.scrollIntoView({block:"nearest",inline:"nearest"}); }
 tabs.forEach(a=>{a.setAttribute("role","tab");a.onclick=e=>{e.preventDefault();show(a.getAttribute("href").slice(1));try{history.replaceState(null,"",a.getAttribute("href"))}catch(err){}}});
+document.querySelectorAll('[data-go]').forEach(a=>a.onclick=e=>{e.preventDefault();show(a.getAttribute('href').slice(1))});
 show((location.hash||"").slice(1)||store.get("tab","challenge"));
 </script>
-
-</body></html>
