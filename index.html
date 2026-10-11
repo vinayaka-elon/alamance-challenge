@@ -54,8 +54,9 @@ a{color:var(--accent);text-underline-offset:2px}
 /* map */
 .mapwrap{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px}
 .mapbox{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.mapbox svg{display:block;width:100%;height:auto;max-height:72vh}
-.chart svg{max-height:60vh}
+.mapbox svg{display:block;width:100%;height:auto;max-height:56vh}
+.chart svg{max-height:46vh}
+#keys{max-height:300px;display:block;margin:0 auto}
 .legend .li{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .legend{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);padding:8px 12px;border-top:1px solid var(--line)}
 .sw{display:inline-block;width:18px;height:12px;border-radius:2px;vertical-align:middle}
@@ -224,7 +225,7 @@ h1{font-size:clamp(2.2rem,3.6vw,2.9rem);line-height:1.1;letter-spacing:-.015em}
     <div class="card"><p><b>Alamance_Growth_ZIP_Panel.xlsx</b></p><ul class="plain small" style="margin-top:6px"><li>9 ZIP areas × 16 years, 41 measures</li><li>Census survey, IRS, business patterns, jobs, house prices</li><li>Data_Availability sheet shows coverage by year</li></ul></div>
     <div class="card"><p><b>Alamance_Growth_Notebook.ipynb</b></p><ul class="plain small" style="margin-top:6px"><li>Loads both workbooks and checks every join</li><li>Assigns parcels and permits to ZIP codes</li><li>Builds a ZIP-year table, one explanatory model and one forecast</li></ul></div>
   </div>
-  <div class="card"><svg id="keys" viewBox="0 0 1000 300" role="img" aria-label="How the datasets connect through shared keys" style="width:100%;height:auto"></svg></div>
+  <div class="card"><svg id="keys" viewBox="20 20 920 270" role="img" aria-label="How the datasets connect through shared keys" style="width:100%;height:auto"></svg></div>
   <div class="grid2">
     <div class="card" style="display:flex;flex-direction:column;gap:10px">
       <b>Try a join: why row counts change</b>
@@ -376,7 +377,7 @@ const ZSHARE={"27215":95,"27217":97,"27244":88,"27249":30,"27253":100,"27258":10
 /* ---------- geography explorer ---------- */
 const LV=[
 {k:"state",name:"North Carolina",count:"100 counties",what:"The state is the frame for county comparisons. Alamance sits in the Piedmont between Greensboro and Durham along Interstates 40 and 85.",data:"State and county trends (population, jobs, income) from federal sources.",key:"County FIPS code (Alamance = 37001)",caution:"County totals hide the large differences inside Alamance."},
-{k:"county",name:"Alamance County",count:"1 county, 435 sq mi",what:"The county government assesses property, issues permits outside the largest cities and plans land use for unincorporated areas.",data:"All 79,870 parcels in the starter workbook; county-issued permits.",key:"County FIPS 37001",caution:"Burlington, Graham and Mebane issue their own building permits, so the county Permits sheet misses most of their activity."},
+{k:"county",name:"Alamance County",count:"1 county, about 424 square miles of land",what:"The county government assesses property, issues permits outside the largest cities and plans land use for unincorporated areas.",data:"All 79,870 parcels in the starter workbook; county-issued permits.",key:"County FIPS 37001",caution:"Burlington, Graham and Mebane issue their own building permits, so the county Permits sheet misses most of their activity."},
 {k:"places",name:"Towns and cities",count:"10 municipalities plus Unincorporated",what:"Incorporated towns set zoning and provide services within their limits. Land outside all towns is Unincorporated, and about a third of residents live there.",data:"The Area column on Parcels, Permits and Areas.",key:"Area name",caution:"Town limits change through annexation; Mebane also extends into Orange County."},
 {k:"townships",name:"Townships",count:"13 townships",what:"Townships divide the entire county with fixed historical lines. They are useful for splitting the large Unincorporated area into comparable parts.",data:"The Township column on Parcels and Permits.",key:"Township name",caution:"Townships have no government of their own and few published statistics."},
 {k:"zips",name:"ZIP code areas",count:"9 used in the ZIP panel",what:"ZIP Code Tabulation Areas are Census approximations of postal ZIP codes. They are the finest level at which tax-return, business and many survey statistics are published every year.",data:"Alamance_Growth_ZIP_Panel.xlsx: 41 measures, 2010 to 2025.",key:"ZIP Code (five-digit text) and Year",caution:"Five ZIPs cross county lines; Liberty and Gibsonville are mostly outside Alamance."},
@@ -407,7 +408,7 @@ function drawGeo(){
   const col=d=>{const p=d.properties; if(pcolor==="yr"){ if(!p.yr) return base; for(let i=0;i<5;i++) if(p.yr<yrs[i+1]) return ycol[i]; return ycol[4]} return p.val>0?q(p.val):base};
   hover(g.selectAll("path").data(fc.features).join("path").attr("d",path).attr("fill",col).attr("stroke",line).attr("stroke-width",.7),d=>{const p=d.properties;return `<b>Parcel</b><br>Year built: ${p.yr||"no building"}<br>Assessed value: ${p.val?"$"+d3.format(",")(p.val):"n/a"}<br>Acres: ${p.ac}${p.sf?`<br>Finished area: ${d3.format(",")(p.sf)} sq ft`:""}`});
   legend = pcolor==="yr" ? `Year built: `+["before 1950","1950–79","1980–99","2000–14","2015 or later"].map((t,i)=>`<span class="sw" style="background:${ycol[i]}"></span>${t}`).join(" ")+` <span class="sw" style="background:${base}"></span>no building`
-   : `Assessed value (quintiles): `+q.quantiles().reduce((a,v,i)=>a,[]).concat()+PAL.map((c,i)=>`<span class="sw" style="background:${c}"></span>${i===0?"lowest":i===4?"highest":""}`).join(" ");
+   : `Assessed value, lowest to highest fifth: `+PAL.map(c=>`<span class="sw" style="background:${c}"></span>`).join(" ")+` <span class="sw" style="background:${base}"></span>no value`;
  } else {
   g.selectAll("path.cty").data(GEO.counties.features).join("path").attr("d",path).attr("fill",ctx).attr("stroke",line).attr("stroke-width",1);
   g.append("path").datum(GEO.county.features[0]).attr("d",path).attr("fill",base).attr("stroke",fg).attr("stroke-width",1.6);
