@@ -1,6 +1,6 @@
 <title>Alamance Growth Data Challenge</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap">
 <style>
 /* Layout: tab bar across the top, one panel visible at a time; map left, explanation right. Elon maroon and gold on white. */
 :root{
@@ -8,8 +8,9 @@
   --bg:#ffffff; --panel:#ffffff; --fg:#1f1a1a; --muted:#5f5757; --line:#e3dede; --soft:#f7f5f2;
   --accent:#73000a; --accent-soft:#f6e9ea; --warm:#8a6d2b; --gold:#b59a57; --warm-soft:#f6f0e3;
   --map-base:#efece6; --map-line:#ffffff; --map-ctx:#dcd8d0;
-  --font:"Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono:ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font:"Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display:"Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"Figtree", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.6}
@@ -109,7 +110,7 @@ footer{color:var(--muted);font-size:.82rem}
 
 /* readability and emphasis */
 .card,section>*,.grid2>*,.grid3>*{min-width:0}
-.title,.card b{overflow-wrap:anywhere}
+.title{overflow-wrap:anywhere}
 :root{--teal:#527b82;--orange:#b7410e;--green:#788a38;--hl:#f3e6c4}
 body{font-size:17.5px}
 .small{font-size:1rem;line-height:1.6}
@@ -164,31 +165,124 @@ h1{font-size:clamp(2.2rem,3.6vw,2.9rem);line-height:1.1;letter-spacing:-.015em}
   .phases,.gates{grid-template-columns:1fr 1fr}
   .gates{display:none}
 }
+
+/* ===== rebuilt shell ===== */
+.panel,main>*{min-width:0;max-width:100%}
+html{scroll-behavior:auto}
+body{font-size:18px}
+.app{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh}
+.side-nav{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--accent);color:#fff;padding:26px 18px 30px;display:flex;flex-direction:column;gap:14px}
+.sn-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.sn-brand{font-weight:700;font-size:1.25rem;line-height:1.2;letter-spacing:-.01em}
+.sn-menu{display:none;background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+.sn-links{display:flex;flex-direction:column;gap:4px}
+.sn-progress{display:flex;flex-direction:column;gap:6px;font-size:.85rem;color:#f1e6d0;margin-bottom:8px}
+.sn-bar{height:6px;border-radius:3px;background:rgba(255,255,255,.2);overflow:hidden}
+.sn-bar span{display:block;height:100%;width:0;background:var(--gold);transition:width .3s}
+.sn-group{font-size:.78rem;letter-spacing:.06em;color:#e6d3a8;margin:14px 0 4px;font-weight:600}
+.sn-link{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;padding:9px 10px;border-radius:8px;font-size:1rem;line-height:1.3}
+.sn-link:hover{background:rgba(255,255,255,.12)}
+.sn-link.on{background:#fff;color:var(--accent);font-weight:700}
+.sn-num{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:.82rem;font-weight:700;border:1.5px solid rgba(255,255,255,.6)}
+.sn-link.on .sn-num{background:var(--accent);color:#fff;border-color:var(--accent)}
+.sn-lab{flex:1}
+.sn-done{opacity:0;color:var(--gold);font-weight:700}
+.sn-link.done .sn-done{opacity:1}
+.sn-link:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+main{width:100%;max-width:1240px;margin:0 auto;box-sizing:border-box;padding:36px clamp(20px,4vw,56px) 64px;display:flex;flex-direction:column;gap:28px;min-width:0}
+.panel:not([hidden]){animation:fadein .25s ease}
+@keyframes fadein{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+h1{font-size:clamp(2.3rem,3.6vw,3rem)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.stat{background:var(--accent-soft);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:4px;border-bottom:4px solid var(--accent)}
+.stat:nth-child(2){background:#eef3f3;border-color:var(--teal)}
+.stat:nth-child(3){background:var(--warm-soft);border-color:var(--gold)}
+.stat:nth-child(4){background:#f3f4ea;border-color:var(--green)}
+.stat-n{font-size:2rem;font-weight:700;line-height:1.1;color:var(--fg);font-variant-numeric:tabular-nums}
+.stat-l{font-size:.95rem;color:var(--muted);line-height:1.4}
+.card{border-radius:12px;transition:box-shadow .2s,transform .2s}
+.grid2>.card:hover,.grid3>.card:hover,.stat:hover{box-shadow:0 6px 18px rgba(115,0,10,.08)}
+.pager{display:flex;justify-content:space-between;gap:14px;margin-top:10px;padding-top:18px;border-top:1px solid var(--line)}
+.pg{display:flex;flex-direction:column;gap:2px;text-decoration:none;color:var(--accent);font-weight:700;font-size:1.05rem;padding:12px 18px;border:1.5px solid var(--line);border-radius:12px;min-width:200px;max-width:48%}
+.pg span{font-size:.82rem;font-weight:600;color:var(--muted)}
+.pg.next{text-align:right;margin-left:auto;background:var(--accent);color:#fff;border-color:var(--accent)}
+.pg.next span{color:#f1e6d0}
+.pg:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(115,0,10,.12)}
+.qcheck{border:2px dashed var(--gold);background:#fffdf8;display:flex;flex-direction:column;gap:16px}
+.qc-h{font-weight:700;font-size:1.15rem;color:var(--accent)}
+.qc-q{display:flex;flex-direction:column;gap:8px}
+.qc-t{font-weight:600}
+.qc-o{display:flex;flex-wrap:wrap;gap:8px}
+.qc-o button{border-radius:10px;text-align:left}
+.qc-o button.right{background:#e7f1ec;border-color:#2e7d55;color:#1f5c3d;font-weight:600}
+.qc-o button.wrong{background:#fbe9e7;border-color:var(--orange);color:var(--orange)}
+.qc-f{font-size:1rem;min-height:1.2em}
+@media (max-width:1100px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .side-nav{position:sticky;top:0;height:auto;z-index:30;padding:12px 16px;gap:8px}
+  .sn-menu{display:inline-block}
+  .sn-links{display:none}
+  .side-nav.open .sn-links{display:flex;max-height:75vh;overflow-y:auto}
+  main{padding:22px 16px 48px}
+  .pg{min-width:0;max-width:none;flex:1}
+}
+
+
+.tasks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.task{display:flex;gap:14px;align-items:flex-start;background:var(--soft);border-radius:12px;padding:18px}
+.task.req{background:var(--accent-soft);outline:2px solid var(--accent)}
+.task-n{flex:0 0 40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:1.15rem}
+.task-h{font-weight:700;font-size:1.15rem;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.req-tag{font-size:.8rem;font-weight:700;color:#fff;background:var(--accent);border-radius:6px;padding:2px 8px}
+.task p{margin:0;line-height:1.55}
+.facts{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:10px 20px;margin:0}
+.facts dt{font-weight:700;color:var(--accent)}
+.facts dd{margin:0}
+@media (max-width:900px){.tasks{grid-template-columns:minmax(0,1fr)}.facts{grid-template-columns:minmax(0,1fr);gap:2px}.facts dd{margin-bottom:10px}}
+
+
+/* type */
+h1,h2,.bigq,.sn-brand,.task-h,.title{font-family:var(--display)}
+h1{font-weight:800;letter-spacing:-.02em}
+h2{font-weight:700;letter-spacing:0}
+.bigq{font-weight:600}
+.task-h,.title{font-weight:700}
+.sn-brand{font-weight:700;font-size:1.35rem}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
-<nav class="rail" aria-label="Sections" role="tablist"><div class="in" id="railin">
-<a href="#challenge">Challenge</a><a href="#geography">Geography</a><a href="#trends">ZIP trends</a><a href="#data">Data and merging</a><a href="#dictionary">Data dictionary</a><a href="#questions">Questions</a><a href="#ai">AI in analytics</a><a href="#log">Documenting AI</a><a href="#judging">Judging</a><a href="#refs">References</a>
-</div></nav>
-
+<div class="app">
+<aside class="side-nav" aria-label="Sections">
+  <div class="sn-top"><div class="sn-brand">Alamance Growth<br>Data Challenge</div><button class="sn-menu" id="snmenu" aria-expanded="false" aria-controls="snlinks">Menu</button></div>
+  <div class="sn-links" id="snlinks">
+    <div class="sn-progress"><div class="sn-bar"><span id="snbar"></span></div><span id="sntext">0 of 10 explored</span></div>
+    <div class="sn-group">Start</div><a href="#challenge" class="sn-link"><span class="sn-num">1</span><span class="sn-lab">The challenge</span><span class="sn-done" aria-hidden="true">✓</span></a><div class="sn-group">Understand the place</div><a href="#geography" class="sn-link"><span class="sn-num">2</span><span class="sn-lab">Geography</span><span class="sn-done" aria-hidden="true">✓</span></a><a href="#trends" class="sn-link"><span class="sn-num">3</span><span class="sn-lab">ZIP trends</span><span class="sn-done" aria-hidden="true">✓</span></a><div class="sn-group">Prepare the data</div><a href="#data" class="sn-link"><span class="sn-num">4</span><span class="sn-lab">Data and merging</span><span class="sn-done" aria-hidden="true">✓</span></a><a href="#dictionary" class="sn-link"><span class="sn-num">5</span><span class="sn-lab">Data dictionary</span><span class="sn-done" aria-hidden="true">✓</span></a><div class="sn-group">Analyze</div><a href="#questions" class="sn-link"><span class="sn-num">6</span><span class="sn-lab">Questions to explore</span><span class="sn-done" aria-hidden="true">✓</span></a><div class="sn-group">Use AI well</div><a href="#ai" class="sn-link"><span class="sn-num">7</span><span class="sn-lab">AI in analytics</span><span class="sn-done" aria-hidden="true">✓</span></a><a href="#log" class="sn-link"><span class="sn-num">8</span><span class="sn-lab">Documenting AI</span><span class="sn-done" aria-hidden="true">✓</span></a><div class="sn-group">Finish</div><a href="#judging" class="sn-link"><span class="sn-num">9</span><span class="sn-lab">Judging</span><span class="sn-done" aria-hidden="true">✓</span></a><a href="#refs" class="sn-link"><span class="sn-num">10</span><span class="sn-lab">References</span><span class="sn-done" aria-hidden="true">✓</span></a>
+  </div>
+</aside>
 <main>
 <header class="top panel" id="challenge">
   <h1>Alamance Growth Data Challenge</h1>
   <p class="bigq">Where is Alamance County growing, which factors are associated with that growth, where is growth likely to occur next, and what should local decision makers do about it?</p>
-  <p class="lede">Alamance County added roughly 35,000 residents between 2010 and 2025, and new homes, jobs and rising prices are not spread evenly across it. Your team will find where growth is happening, what goes with it and where it is likely to go next. <span class="ul">Every team must end with a recommendation that names who should act, what they should do, the evidence behind it and one limit of the data.</span></p>
-  <div class="trio">
-    <div><div class="trio-h">Your task</div><ul class="plain"><li>One diagnostic model of what is associated with growth</li><li>One predictive model of where growth goes next, compared with a simple rule</li><li><b>Required:</b> one recommendation to a named decision maker, such as a town board, the county planning department or a nonprofit housing builder, stating the action, the evidence and one limit of the data</li></ul></div>
-    <div><div class="trio-h">What you deliver</div><ul class="plain"><li>A team presentation, judged on the criteria in the Judging tab</li><li>The files that reproduce every result you show</li><li>Your AI-use log</li></ul></div>
-    <div><div class="trio-h">How to work</div><p>Start from one sharp question and pick <span class="hl">three to five measures that bear on it</span>. Learn how each was measured, where it is missing and what it cannot show. A focused analysis gives a clearer story and a more defensible model than every column at once.</p></div>
+  <p class="lede">Alamance County added roughly 35,000 residents between 2010 and 2025, and new homes, jobs and rising prices are not spread evenly across it. Your team will find where growth is happening, what goes with it and where it is likely to go next. Your work ends with three tasks.</p>
+  <div class="tasks">
+    <div class="task"><div class="task-n">1</div><div><div class="task-h">Explain</div><p>Build a diagnostic model of what is associated with growth.</p></div></div>
+    <div class="task"><div class="task-n">2</div><div><div class="task-h">Forecast</div><p>Build a predictive model of where growth goes next, and compare it with a simple rule.</p></div></div>
+    <div class="task req"><div class="task-n">3</div><div><div class="task-h">Recommend <span class="req-tag">Required</span></div><p>Name who should act, what they should do, the evidence behind it and one limit of the data.</p></div></div>
   </div>
-  <div class="startrow"><span class="trio-h" style="margin:0">Start here</span>
+  <dl class="facts">
+    <dt>You deliver</dt><dd>A team presentation, plus the files that reproduce every result you show and your AI-use log.</dd>
+    <dt>How to work</dt><dd>Pick one sharp question and <span class="hl">three to five measures</span> that bear on it, then learn each measure well: how it was measured, where it is missing and what it cannot show.</dd>
+  </dl>
+  <div class="startrow"><span class="trio-h" style="margin:0">Suggested path</span>
     <a href="#geography" data-go>1. Geography</a><a href="#dictionary" data-go>2. Data dictionary</a><a href="#questions" data-go>3. Questions</a><a href="#log" data-go>4. Documenting AI</a></div>
 </header>
 
 
 
 <section id="geography" class="panel">
-  <h2><span class="sec-num">01</span>Geography: from state to parcel</h2>
+  <h2><span class="sec-num">02</span>Geography: from state to parcel</h2>
   <p class="intro">Every dataset in this challenge is recorded at one geographic level. Parcels sit inside towns, townships, ZIP codes and census tracts, but <span class="hl">ZIP codes ignore county and town lines</span>, so a ZIP figure can describe people who live outside Alamance. Step through the levels to see what each one is, which data uses it and how it connects to the others.</p>
   <div class="btns" id="levels" role="group" aria-label="Geographic level"></div>
   <div class="mapwrap">
@@ -202,7 +296,7 @@ h1{font-size:clamp(2.2rem,3.6vw,2.9rem);line-height:1.1;letter-spacing:-.015em}
 </section>
 
 <section id="trends" class="panel">
-  <h2><span class="sec-num">02</span>ZIP code trends over time</h2>
+  <h2><span class="sec-num">03</span>ZIP code trends over time</h2>
   <p class="intro">The ZIP panel workbook follows the nine ZIP areas that cover Alamance from 2010 to 2025. Use it to scan the 19 measures quickly and shortlist the two or three that tell the clearest story for your question. Gray ZIPs have no published value for that year.</p>
   <div class="btns" style="align-items:flex-end;gap:12px">
     <label>Measure<select id="measure"></select></label>
@@ -218,7 +312,7 @@ h1{font-size:clamp(2.2rem,3.6vw,2.9rem);line-height:1.1;letter-spacing:-.015em}
 </section>
 
 <section id="data" class="panel">
-  <h2><span class="sec-num">03</span>Data and merging</h2>
+  <h2><span class="sec-num">04</span>Data and merging</h2>
   <p class="intro">Two workbooks and one notebook support the challenge. Most analysis errors in projects like this come from joins that silently duplicate or drop rows, so plan every join and <span class="ul">check the row count after it</span>.</p>
   <div class="grid3">
     <div class="card"><p><b>Alamance_Growth_Starter_Data.xlsx</b></p><ul class="plain small" style="margin-top:6px"><li>Parcels: 79,870 properties, 2026 snapshot</li><li>Permits: 27,241 county permits, 2019 to Aug 2026</li><li>Areas: 10 towns plus Unincorporated</li></ul></div>
@@ -251,7 +345,7 @@ h1{font-size:clamp(2.2rem,3.6vw,2.9rem);line-height:1.1;letter-spacing:-.015em}
 </section>
 
 <section id="dictionary" class="panel">
-  <h2><span class="sec-num">04</span>Data dictionary</h2>
+  <h2><span class="sec-num">05</span>Data dictionary</h2>
   <p class="intro">What every column means, what the data cannot tell you, and one worked example for each workbook. Read the known limits before you draw any conclusion.</p>
   <div class="btns" id="dictfile" role="group" aria-label="Workbook"><button data-f="starter" class="on">Starter workbook</button><button data-f="zip">ZIP panel</button></div>
   <div class="card" id="dictsummary"></div>
@@ -263,7 +357,7 @@ h1{font-size:clamp(2.2rem,3.6vw,2.9rem);line-height:1.1;letter-spacing:-.015em}
 </section>
 
 <section id="questions" class="panel">
-  <h2><span class="sec-num">05</span>Questions to explore</h2>
+  <h2><span class="sec-num">06</span>Questions to explore</h2>
   <p class="intro">These questions are starting points. Pick one or two that interest your team and go deep, using one model to explain what is associated with growth and another to forecast it against a simple rule. Each card shows where to start.</p>
   <div class="card" style="border-left:5px solid var(--gold);display:flex;flex-direction:column;gap:8px">
     <b>Before you add a measure, ask four questions</b>
@@ -291,7 +385,7 @@ h1{font-size:clamp(2.2rem,3.6vw,2.9rem);line-height:1.1;letter-spacing:-.015em}
 </section>
 
 <section id="ai" class="panel">
-  <h2><span class="sec-num">06</span>AI in analytics: what the research shows</h2>
+  <h2><span class="sec-num">07</span>AI in analytics: what the research shows</h2>
   <p class="intro">AI tools can write code, summarize data and draft reports quickly, and the research on their use in data analysis points to one consistent lesson: <span class="hl">the analyst's job shifts toward checking</span>. Read these findings before you start.</p>
   <div class="grid2" id="evidence"></div>
   <div class="card" style="display:flex;flex-direction:column;gap:10px">
@@ -308,7 +402,7 @@ h1{font-size:clamp(2.2rem,3.6vw,2.9rem);line-height:1.1;letter-spacing:-.015em}
 </section>
 
 <section id="log" class="panel">
-  <h2><span class="sec-num">07</span>Documenting AI use</h2>
+  <h2><span class="sec-num">08</span>Documenting AI use</h2>
   <p class="intro">Every AI use that produces code, analysis, text, a figure or a decision goes in the log shared with your result files. The stage field uses the six stages of the CRISP-DM process model (Wirth &amp; Hipp, 2000). Practice with the builder below; entries stay in this browser only, and the CSV button copies them for your own log file.</p>
   <div class="card" style="display:flex;flex-direction:column;gap:12px">
     <form id="logform" class="logform" novalidate>
@@ -338,7 +432,7 @@ h1{font-size:clamp(2.2rem,3.6vw,2.9rem);line-height:1.1;letter-spacing:-.015em}
 </section>
 
 <section id="judging" class="panel">
-  <h2><span class="sec-num">08</span>Judging and submission</h2>
+  <h2><span class="sec-num">09</span>Judging and submission</h2>
   <div class="grid2">
     <div class="tbl"><table>
       <tr><th>Category</th><th>Criteria</th></tr>
@@ -355,11 +449,12 @@ h1{font-size:clamp(2.2rem,3.6vw,2.9rem);line-height:1.1;letter-spacing:-.015em}
 </section>
 
 <section id="refs" class="panel refs">
-  <h2><span class="sec-num">09</span>References and data sources</h2>
+  <h2><span class="sec-num">10</span>References and data sources</h2>
   <div id="reflist"></div>
 </section>
 
 </main>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script>
@@ -633,13 +728,23 @@ const REF=["Cheng, L., Li, X., &amp; Bing, L. (2023). Is GPT-4 a good data analy
 "Data: U.S. Census Bureau (American Community Survey, LEHD LODES, ZIP Code Business Patterns, cartographic boundary files); IRS Statistics of Income ZIP Code Data; Federal Housing Finance Agency ZIP5 House Price Index; Zillow Research ZHVI; Alamance County GIS tax parcels."];
 $("#reflist").innerHTML=REF.map(r=>`<p>${r}</p>`).join("");
 
-/* tabs */
-const tabs=[...document.querySelectorAll("nav.rail a")], panels=[...document.querySelectorAll(".panel")];
-function show(id){ if(!panels.some(p=>p.id===id)) id="challenge";
- panels.forEach(p=>p.hidden=p.id!==id); tabs.forEach(a=>{const on=a.getAttribute("href")==="#"+id;a.classList.toggle("on",on);a.setAttribute("aria-selected",on)});
+/* navigation */
+const tabs=[...document.querySelectorAll(".sn-link")], panels=[...document.querySelectorAll(".panel")];
+const order=tabs.map(a=>a.getAttribute("href").slice(1)), names=tabs.map(a=>a.querySelector(".sn-lab").textContent);
+let seen=store.get("seen",[]);
+panels.forEach(p=>{const i=order.indexOf(p.id); if(i<0) return; const d=document.createElement("div"); d.className="pager";
+ d.innerHTML=(i>0?`<a href="#${order[i-1]}" class="pg prev" data-go><span>Back</span>${names[i-1]}</a>`:"<span></span>")+(i<order.length-1?`<a href="#${order[i+1]}" class="pg next" data-go><span>Next</span>${names[i+1]}</a>`:"");
+ p.appendChild(d);});
+function show(id){ if(!order.includes(id)) id="challenge";
+ panels.forEach(p=>p.hidden=p.id!==id);
+ tabs.forEach(a=>{const on=a.getAttribute("href")==="#"+id; a.classList.toggle("on",on); if(on) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current")});
+ if(!seen.includes(id)){seen.push(id); store.set("seen",seen)}
+ tabs.forEach(a=>a.classList.toggle("done",seen.includes(a.getAttribute("href").slice(1))));
+ $("#snbar").style.width=(100*seen.length/order.length)+"%"; $("#sntext").textContent=`${seen.length} of ${order.length} explored`;
  store.set("tab",id); window.scrollTo(0,0);
- const t=tabs.find(a=>a.classList.contains("on")); if(t) t.scrollIntoView({block:"nearest",inline:"nearest"}); }
-tabs.forEach(a=>{a.setAttribute("role","tab");a.onclick=e=>{e.preventDefault();show(a.getAttribute("href").slice(1));try{history.replaceState(null,"",a.getAttribute("href"))}catch(err){}}});
-document.querySelectorAll('[data-go]').forEach(a=>a.onclick=e=>{e.preventDefault();show(a.getAttribute('href').slice(1))});
+ document.querySelector(".side-nav").classList.remove("open"); $("#snmenu").setAttribute("aria-expanded","false");
+ try{history.replaceState(null,"","#"+id)}catch(err){} }
+document.addEventListener("click",e=>{const a=e.target.closest(".sn-link,[data-go]"); if(!a) return; e.preventDefault(); show(a.getAttribute("href").slice(1))});
+$("#snmenu").onclick=()=>{const n=document.querySelector(".side-nav"); const o=!n.classList.contains("open"); n.classList.toggle("open",o); $("#snmenu").setAttribute("aria-expanded",o)};
 show((location.hash||"").slice(1)||store.get("tab","challenge"));
 </script>
